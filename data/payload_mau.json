@@ -1,0 +1,6 @@
+{
+  "device_id": "sensor_node_01",
+  "temperature": 28.5,
+  "humidity": 65.0,
+  "timestamp": "2026-07-30T10:00:00Z"
+}

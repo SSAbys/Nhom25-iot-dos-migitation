@@ -1,33 +1,31 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+import datetime
 
 app = Flask(__name__)
 
-# Khởi tạo cơ chế Rate Limiting dựa trên địa chỉ IP của client
+# Khởi tạo Flask-Limiter cấu hình giới hạn (Ví dụ: tối đa 5 requests / 10 giây)
 limiter = Limiter(
-    app=app,
     key_func=get_remote_address,
-    default_limits=["200 per day", "50 per hour"]
+    app=app,
+    default_limits=["5 per 10seconds"]
 )
 
 @app.route('/telemetry', methods=['POST'])
-@limiter.limit("5 per 10 seconds")  # Ngưỡng phòng thủ: Tối đa 5 request trong vòng 10 giây cho mỗi IP
-def receive_telemetry():
-    data = request.get_json()
-    if not data:
-        return jsonify({"error": "Invalid payload"}), 400
-    
-    print(f"[+] Nhận dữ liệu hợp lệ từ IP {request.remote_addr}: {data}")
+def handle_telemetry():
+    # Xử lý lưu lượng hợp lệ
     return jsonify({
-        "status": "success", 
+        "status": "success",
         "message": "Đã tiếp nhận dữ liệu cảm biến thành công."
     }), 200
 
-# Tùy chỉnh phản hồi khi vượt quá ngưỡng (Mã lỗi tiêu chuẩn 429 Too Many Requests)
+# Hàm tùy chỉnh thông điệp trả về khi vượt quá giới hạn (Rate Limit Exceeded -> 429)
 @app.errorhandler(429)
 def ratelimit_handler(e):
-    print(f"[!] Cảnh báo: Phát hiện lưu lượng vượt ngưỡng từ IP {request.remote_addr} (Dấu hiệu DoS/Flooding)")
+    client_ip = get_remote_address()
+    # In cảnh báo lên console của Server (khớp với hình minh họa TC-02-Server.PNG)
+    print(f"[!] Cảnh báo: Phát hiện lưu lượng vượt ngưỡng từ IP {client_ip} (Dấu hiệu DoS/Flooding)")
     return jsonify({
         "error": "Too Many Requests",
         "message": "Vượt quá giới hạn cho phép. Yêu cầu đã bị từ chối để bảo vệ hệ thống."

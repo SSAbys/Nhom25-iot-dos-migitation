@@ -1,0 +1,6 @@
+{
+  "app_name": "IoT-Gateway-Defense",
+  "default_rate_limit": "5 per 10 seconds",
+  "storage_backend": "memory://",
+  "endpoint_path": "/api/telemetry"
+}

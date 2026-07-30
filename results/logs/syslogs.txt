@@ -1,0 +1,12 @@
+--- [TC-01] Kiểm tra lưu lượng hợp lệ (Nhịp độ chậm) ---
+Request 1: Status Code = 200 | Phản hồi: {'message': 'Đã tiếp nhận dữ liệu cảm biến thành công.', 'status': 'success'}
+Request 2: Status Code = 200 | Phản hồi: {'message': 'Đã tiếp nhận dữ liệu cảm biến thành công.', 'status': 'success'}
+
+--- [TC-02] Mô phỏng tấn công ngập lụt (Gửi dồn dập vượt ngưỡng 5 lần/10s) ---
+Flood Request 1: Status Code = 200 | Phản hồi: {'message': 'Đã tiếp nhận dữ liệu cảm biến thành công.', 'status': 'success'}
+Flood Request 2: Status Code = 200 | Phản hồi: {'message': 'Đã tiếp nhận dữ liệu cảm biến thành công.', 'status': 'success'}
+Flood Request 3: Status Code = 200 | Phản hồi: {'message': 'Đã tiếp nhận dữ liệu cảm biến thành công.', 'status': 'success'}
+Flood Request 4: Status Code = 429 | Phản hồi: {'error': 'Too Many Requests', 'message': 'Vượt quá giới hạn cho phép. Yêu cầu đã bị từ chối để bảo vệ hệ thống.'}
+Flood Request 5: Status Code = 429 | Phản hồi: {'error': 'Too Many Requests', 'message': 'Vượt quá giới hạn cho phép. Yêu cầu đã bị từ chối để bảo vệ hệ thống.'}
+Flood Request 6: Status Code = 429 | Phản hồi: {'error': 'Too Many Requests', 'message': 'Vượt quá giới hạn cho phép. Yêu cầu đã bị từ chối để bảo vệ hệ thống.'}
+Flood Request 7: Status Code = 429 | Phản hồi: {'error': 'Too Many Requests', 'message': 'Vượt quá giới hạn cho phép. Yêu cầu đã bị từ chối để bảo vệ hệ thống.'}
