@@ -54,7 +54,7 @@ iot-gateway-dos-defense/
 │   └── config.json         # Tệp cấu hình tham số hệ thống
 └── references/
     └── link_nguon.md       # Danh mục nguồn tài liệu chi tiết
-```
+
 Hướng dẫn sử dụng và chạy Lab
 Đọc báo cáo chi tiết:
 
