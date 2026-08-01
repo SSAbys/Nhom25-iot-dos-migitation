@@ -24,7 +24,7 @@ Mọi thử nghiệm đều được thực hiện trong môi trường phòng l
 
 ## Cấu trúc repository
 
-text
+```text
 iot-gateway-dos-defense/
 ├── README.md
 ├── report/
@@ -54,6 +54,7 @@ iot-gateway-dos-defense/
 │   └── config.json         # Tệp cấu hình tham số hệ thống
 └── references/
     └── link_nguon.md       # Danh mục nguồn tài liệu chi tiết
+```
 Hướng dẫn sử dụng và chạy Lab
 Đọc báo cáo chi tiết:
 
